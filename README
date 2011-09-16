@@ -1,0 +1,11 @@
+My vim/gvim configuration
+=========================
+
+I've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
+
+I use *[pathogen](https://github.com/tpope/vim-pathogen)* to organise plugins. It's awesome; you should use it.
+Hopefully something like it will become default in vim 8.
+
+Links to vim plugins:
+
+-- coming soon
