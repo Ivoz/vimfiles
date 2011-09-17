@@ -1,6 +1,0 @@
-[submodule ".vim\\bundle\\matchit"]
-	path = .vim\\bundle\\matchit
-	url = ./.vim\\bundle\\matchit
-[submodule ".vim\\bundle\\vim-markdown"]
-	path = .vim\\bundle\\vim-markdown
-	url = ./.vim\\bundle\\vim-markdown
