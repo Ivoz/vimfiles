@@ -1,0 +1,14 @@
+mru
+nerdtree
+python-syntax
+supertab
+surround
+taglist
+vim-commentary
+vim-fugitive
+vim-git
+vim-markdown
+vim-repeat
+xptemplate
+zencoding
+matchit.zip
