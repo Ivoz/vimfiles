@@ -12,9 +12,12 @@ endif
 
 call vundle#rc()
 
+" Github bundles
 Bundle 'gmarik/vundle'
-Bundle 'drmingdrmer/xptemplate'
+Bundle 'mattn/gist-vim'
 Bundle 'mattn/zencoding-vim'
+Bundle 'mfumi/snake.vim'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
@@ -22,10 +25,15 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'Townk/vim-autoclose'
 
+" Vim-scripts bundles
 Bundle 'matchit.zip'
 Bundle 'taglist.vim'
 Bundle 'mru.vim'
+Bundle 'UltiSnips'
+Bundle 'ZoomWin'
+
 
 
 filetype plugin indent on
