@@ -1,8 +1,33 @@
 " don't try to emulate vi's (unfriendly) behaviour
 set nocompatible  
 
-" Load pathogen, for auto-loading plugins
-call pathogen#infect()
+" Vundle
+filetype off
+
+if has('win32') || has('win64')
+    set rtp+=~/vimfiles/bundle/vundle
+else
+    set rtp+=~/.vim/bundle/vundle
+endif
+
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'drmingdrmer/xptemplate'
+Bundle 'mattn/zencoding-vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+
+Bundle 'matchit.zip'
+Bundle 'taglist.vim'
+Bundle 'mru.vim'
+
+
 filetype plugin indent on
 
 " ===========================
@@ -24,7 +49,7 @@ endif
 " Set colorscheme
 colorscheme delek
 if &t_Co == 256
-    colorscheme mustang
+    colorscheme sunburst
 endif
 
 " perform syntax highlighting (colours code by syntax)
@@ -154,7 +179,7 @@ set ofu=syntaxcomplete#Complete
 " ===========================
 
 if has("gui_running")
-    colorscheme mustang
+    colorscheme sunburst
 
     " No menu or toolbar
     "set guioptions-=m
