@@ -1,1 +1,3 @@
 tags
+.vim/bundle/*
+!.vim/bundle/vundle
