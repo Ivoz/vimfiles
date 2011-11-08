@@ -43,7 +43,7 @@ They can also require python scripting support.
 * townk/vim-autoclose
 * xhr/vim-nginx
 
-### vim-scripts bundles
+#### vim-scripts bundles
 * matchit.zip
 * taglist.vim `-- exuberant ctags`
 * mru.vim
