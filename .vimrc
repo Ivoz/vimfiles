@@ -1,3 +1,5 @@
+" Vim 7.3
+
 " don't try to emulate vi's (unfriendly) behaviour
 set nocompatible  
 
@@ -13,25 +15,43 @@ endif
 call vundle#rc()
 
 " Github bundles
+" Requires Git
 Bundle 'gmarik/vundle'
+Bundle 'ervandew/supertab'
+Bundle 'jnwhiteh/vim-golang'
+" :Gist to copy url, -p for private
+" Requires Curl
 Bundle 'mattn/gist-vim'
+" <c-y>, to expand html
 Bundle 'mattn/zencoding-vim'
+" play snake! :Snake x y; i to start
 Bundle 'mfumi/snake.vim'
-Bundle 'scrooloose/nerdcommenter'
+" Requires clang
+Bundle 'Rip-Rip/clang_complete'
+" :NERDTree to browse filesystem
 Bundle 'scrooloose/nerdtree'
+" comment line: \\\ comment selection: \\
 Bundle 'tpope/vim-commentary'
+"Requires Git
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'Townk/vim-autoclose'
+Bundle 'xhr/vim-nginx'
 
 " Vim-scripts bundles
+" Better % matching
 Bundle 'matchit.zip'
+" :TlistToggle or \Tl to browse code
+" Requires exuberant ctags
 Bundle 'taglist.vim'
+" :MRU for recent files
 Bundle 'mru.vim'
+" Tab completion of snippets; <c-j> for next completion
 Bundle 'UltiSnips'
+" <c-w>o to toggle current window full-screen
 Bundle 'ZoomWin'
 
 
@@ -43,11 +63,14 @@ filetype plugin indent on
 " ===========================
 
 " set font
-try
+if has('win32') || has('win64')
     set gfn=Consolas:h10
-catch
-    set gfn=Dejavu:h10
-endtry
+endif
+
+" Detect screen/tmux running
+if match($TERM, "screen")!=-1
+  set term=screen-256color
+endif
 
 " Detect 256 color terminals
 if ($COLORTERM == 'gnome-terminal') || ($TERM == 'xterm-256color')
@@ -143,6 +166,9 @@ map <F12> ggVGg?
 nnoremap <silent> j j:noh<CR>
 nnoremap <silent> k k:noh<CR>
 
+" ,cd to change working dir to current file's
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
 " ===========================
 " Miscellaneous
 " ===========================
@@ -209,6 +235,14 @@ endif
 " Plugins
 " ===========================
 
+" Super re-tab -use :'<,'>SuperRetab n 
+" to convert n spaces to tabs, at the beginning of lines
+:command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
+
+" Gist-Vim
+let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_detect_filetype = 1
+
 " TagList
 if has('win32') || has('win64')
     :let Tlist_Ctags_Cmd = "ctags"
@@ -219,14 +253,13 @@ endif
 " Set the code explorer to \lT
 nmap <leader>lT :TlistToggle<CR>
 
-"nmap <leader>lT :call Tla()<CR><CR>
-"
-"func Tla()
-"    fu TlistToggle
-"    nmap <leader>lT :call Tlb()<CR>
-"endfunc
-"
-"func Tlb()
-"    fu TlistToggle
-"    nmap <leader>lT :call Tla()<CR><CR>
-"endfunc
+" Complete options (disable preview scratch window)
+set completeopt=menu,menuone,longest
+" Limit popup menu height
+set pumheight=15
+
+" SuperTab option for context aware completion
+let g:SuperTabDefaultCompletionType = "context"
+
+" Show clang errors in the quickfix window
+let g:clang_complete_copen = 1
