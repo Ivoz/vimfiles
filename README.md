@@ -1,15 +1,15 @@
-My vim/gvim configuration
+my vim/gvim configuration
 =========================
 
-I've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
+i've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
 
-I use [Vundle](https://github.com/gmarik/vundle) to organise plugins. It's awesome; you should use it.
-Hopefully something like it will become default in vim 8.
+i use [vundle](https://github.com/gmarik/vundle) to organise plugins. it's awesome; you should use it.
+hopefully something like it will become default in vim 8.
 
-Installation
+installation
 ------------
 
-1. Clone to a folder, say ~/ivos-vim
+1. clone to a folder, say `~/ivos-vim`
 2. `ln -s ~/ivos-vim/.vimrc ~/.vimrc`
 3. `ln -s ~/ivoz-vim/.vim ~`
 4. `cd ~/.vim`
@@ -17,30 +17,36 @@ Installation
 6. `git submodule update`
 7. `vim`
 8. `:BundleInstall`
-9. Done!
+9. done!
 
-My bundles:
+my bundles:
 -----------
 
-#### Github bundles
-* gmarik/vundle
-* mattn/gist-vim
+Some have external dependencies, shown after the --
+They can also require python scripting support.
+
+#### github bundles
+* gmarik/vundle `-- git`
+* ervandew/supertab
+* jnwhiteh/vim-golang
+* mattn/gist-vim `-- curl, git`
 * mattn/zencoding-vim
 * mfumi/snake.vim
-* scrooloose/nerdcommenter
+* rip-rip/clang_complete `-- clang`
 * scrooloose/nerdtree
 * tpope/vim-commentary
-* tpope/vim-fugitive
+* tpope/vim-fugitive `-- git`
 * tpope/vim-git
 * tpope/vim-markdown
 * tpope/vim-repeat
 * tpope/vim-surround
-* Townk/vim-autoclose
+* townk/vim-autoclose
+* xhr/vim-nginx
 
-#### Vim-scripts bundles
+### vim-scripts bundles
 * matchit.zip
-* taglist.vim
+* taglist.vim `-- exuberant ctags`
 * mru.vim
-* UltiSnips
-* ZoomWin
-
+* ultisnips
+* zoomwin
+ 
