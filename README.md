@@ -23,6 +23,7 @@ my bundles:
 -----------
 
 Some have external dependencies, shown after the --
+
 They can also require python scripting support.
 
 #### github bundles
@@ -45,8 +46,7 @@ They can also require python scripting support.
 
 #### vim-scripts bundles
 * matchit.zip
-* taglist.vim `-- exuberant ctags`
+* taglist.vim `-- exuberant-ctags`
 * mru.vim
 * ultisnips
 * zoomwin
- 
