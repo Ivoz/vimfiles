@@ -19,26 +19,30 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'ervandew/supertab'
 Bundle 'jnwhiteh/vim-golang'
-" :Gist to copy url, -p for private
+" :Gist to paste into Gist and copy url, -p for private
 " Requires Curl
 Bundle 'mattn/gist-vim'
+" :Ideone to paste into Ideone and copy url, -p for private, -r to run
+Bundle 'mattn/ideone-vim'
 " <c-y>, to expand html
 Bundle 'mattn/zencoding-vim'
 " play snake! :Snake x y; i to start
 Bundle 'mfumi/snake.vim'
 " Requires clang
 Bundle 'Rip-Rip/clang_complete'
+" Comment line / selection: <leader>cc
+Bundle 'scrooloose/nerdcommenter'
 " :NERDTree to browse filesystem
 Bundle 'scrooloose/nerdtree'
-" comment line: \\\ comment selection: \\
-Bundle 'tpope/vim-commentary'
-"Requires Git
+" Check for syntactic correctness!
+Bundle 'scrooloose/syntastic'
+" Requires Git
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'Townk/vim-autoclose'
+""Bundle 'Townk/vim-autoclose'
 Bundle 'xhr/vim-nginx'
 
 " Vim-scripts bundles
@@ -65,6 +69,8 @@ filetype plugin indent on
 " set font
 if has('win32') || has('win64')
     set gfn=Consolas:h10
+"else
+"    set gfn="DejaVu Sans Mono":h10
 endif
 
 " Detect screen/tmux running
@@ -111,6 +117,12 @@ set shiftwidth=4
 
 " tab key goes in 4 spaces (but existing tabs are displayed 8 wide)
 set softtabstop=4
+
+" Set how many spaces a tab is displayed as
+set tabstop=4
+
+" No not expand tabs into spaces
+set noexpandtab
 
 " Set vim to detect filetypes; will run ~/.vim/ftplugin/<filetype>.vim
 filetype on
@@ -205,6 +217,7 @@ set pastetoggle=<F11>
 set clipboard+=unnamed 
 
 " Enable Omnicompletion
+" Windows requires Exuberant Ctags v5.7+
 filetype plugin on
 set ofu=syntaxcomplete#Complete
 
@@ -249,7 +262,6 @@ if has('win32') || has('win64')
 else
     :let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 endif
-
 " Set the code explorer to \lT
 nmap <leader>lT :TlistToggle<CR>
 
