@@ -30,18 +30,18 @@ They can also require python scripting support.
 * gmarik/vundle `-- git`
 * ervandew/supertab
 * jnwhiteh/vim-golang
+* klen/python-mode
 * mattn/gist-vim `-- curl, git`
 * mattn/zencoding-vim
 * mfumi/snake.vim
 * rip-rip/clang_complete `-- clang`
+* scrooloose/nerdcommenter
 * scrooloose/nerdtree
-* tpope/vim-commentary
 * tpope/vim-fugitive `-- git`
 * tpope/vim-git
 * tpope/vim-markdown
 * tpope/vim-repeat
 * tpope/vim-surround
-* townk/vim-autoclose
 * xhr/vim-nginx
 
 #### vim-scripts bundles

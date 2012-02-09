@@ -45,7 +45,6 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-""Bundle 'Townk/vim-autoclose'
 Bundle 'xhr/vim-nginx'
 
 " Vim-scripts bundles
