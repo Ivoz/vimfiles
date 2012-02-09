@@ -17,8 +17,11 @@ call vundle#rc()
 " Github bundles
 " Requires Git
 Bundle 'gmarik/vundle'
+" Tab autocompletion
 Bundle 'ervandew/supertab'
 Bundle 'jnwhiteh/vim-golang'
+" Everything Python!
+Bundle 'klen/python-mode'
 " :Gist to paste into Gist and copy url, -p for private
 " Requires Curl
 Bundle 'mattn/gist-vim'
@@ -121,7 +124,7 @@ set softtabstop=4
 " Set how many spaces a tab is displayed as
 set tabstop=4
 
-" No not expand tabs into spaces
+" Do not expand tabs into spaces
 set noexpandtab
 
 " Set vim to detect filetypes; will run ~/.vim/ftplugin/<filetype>.vim
@@ -130,6 +133,9 @@ filetype on
 " make sure that TABs work exactly as TABs in Makefiles 
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal softtabstop=0
+
+" Use spaces for python
+autocmd FileType python setlocal expandtab
 
 " set automatic indentation depending upon the detected file type
 filetype indent on
@@ -262,8 +268,8 @@ if has('win32') || has('win64')
 else
     :let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 endif
-" Set the code explorer to \lT
-nmap <leader>lT :TlistToggle<CR>
+" Set the code explorer to \lt
+nmap <leader>lt :TlistToggle<CR>
 
 " Complete options (disable preview scratch window)
 set completeopt=menu,menuone,longest
