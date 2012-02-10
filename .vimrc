@@ -15,46 +15,56 @@ endif
 call vundle#rc()
 
 " Github bundles
-" Requires Git
+"
+" Requires Git - Makes sense of all these Bundle commands
 Bundle 'gmarik/vundle'
 " Tab autocompletion
 Bundle 'ervandew/supertab'
+" Help navigation - use <CR> and <BS>
+Bundle 'juanpabloaj/help.vim'
+" Go highlighting
 Bundle 'jnwhiteh/vim-golang'
+" Fuzzy File/Buffer/MRU finding <C-P>
+Bundle 'kien/ctrlp.vim'
 " Everything Python!
-Bundle 'klen/python-mode'
+"Bundle 'klen/python-mode'
+" Vim Powerline - uses Patched Fonts
+Bundle 'Lokaltog/vim-powerline'
+" TagBar for source code browsing. \tb
+" Requires exuberant ctags
+Bundle 'majutsushi/tagbar'
 " :Gist to paste into Gist and copy url, -p for private
 " Requires Curl
 Bundle 'mattn/gist-vim'
-" :Ideone to paste into Ideone and copy url, -p for private, -r to run
-Bundle 'mattn/ideone-vim'
 " <c-y>, to expand html
 Bundle 'mattn/zencoding-vim'
 " play snake! :Snake x y; i to start
 Bundle 'mfumi/snake.vim'
 " Requires clang
 Bundle 'Rip-Rip/clang_complete'
-" Comment line / selection: <leader>cc
+" Comment line / selection: \cc
 Bundle 'scrooloose/nerdcommenter'
-" :NERDTree to browse filesystem
+" :NERDTree or \nt to browse filesystem
 Bundle 'scrooloose/nerdtree'
 " Check for syntactic correctness!
 Bundle 'scrooloose/syntastic'
+" Fugitive - git shortcuts for vim
 " Requires Git
 Bundle 'tpope/vim-fugitive'
+" Git higlighting and tidbits
 Bundle 'tpope/vim-git'
+" Markdown highlighting
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
+" Easily surround text with other text
 Bundle 'tpope/vim-surround'
+" Nginx config highlighting
 Bundle 'xhr/vim-nginx'
 
 " Vim-scripts bundles
+"
 " Better % matching
 Bundle 'matchit.zip'
-" :TlistToggle or \Tl to browse code
-" Requires exuberant ctags
-Bundle 'taglist.vim'
-" :MRU for recent files
-Bundle 'mru.vim'
 " Tab completion of snippets; <c-j> for next completion
 Bundle 'UltiSnips'
 " <c-w>o to toggle current window full-screen
@@ -71,8 +81,11 @@ filetype plugin indent on
 " set font
 if has('win32') || has('win64')
     set gfn=Consolas:h10
-"else
+else
 "    set gfn="DejaVu Sans Mono":h10
+	" Powerline font-fixing
+	set guifont="Ubuntu Mono Powerline"
+	let g:Powerline_symbols = 'fancy'
 endif
 
 " Detect screen/tmux running
@@ -164,7 +177,7 @@ set showcmd
 set laststatus=2
 
 " customize the status line.  Do ":help statusline" for options
-set statusline=%<%f%h%1*%m%*%r%=%3n\ \ %7(%l,%c%)%V\ %P
+"set statusline=%<%f%h%1*%m%*%r%=%3n\ \ %7(%l,%c%)%V\ %P
 
 " Set short messages
 set shortmess=at
@@ -233,6 +246,7 @@ set ofu=syntaxcomplete#Complete
 if has("gui_running")
     colorscheme sunburst
 
+
     " No menu or toolbar
     "set guioptions-=m
     "set guioptions-=T
@@ -261,14 +275,18 @@ endif
 let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_detect_filetype = 1
 
-" TagList
-if has('win32') || has('win64')
-    :let Tlist_Ctags_Cmd = "ctags"
-else
-    :let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-endif
-" Set the code explorer to \lt
-nmap <leader>lt :TlistToggle<CR>
+" Python-mode settings
+"let g:pymode_run = 0
+"let g:pymode_lint = 0
+
+" Set File Explorer to \nt
+nmap <leader>nt :NERDTree<CR>
+
+" Set the code explorer to \tb
+nmap <leader>tb :TagbarToggle<CR>
+
+" Popup error window for syntastic
+let g:syntastic_auto_loc_list=1
 
 " Complete options (disable preview scratch window)
 set completeopt=menu,menuone,longest
@@ -280,3 +298,4 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " Show clang errors in the quickfix window
 let g:clang_complete_copen = 1
+
