@@ -274,6 +274,7 @@ endif
 " Gist-Vim
 let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_detect_filetype = 1
+let g:gist_private = 1
 
 " Python-mode settings
 "let g:pymode_run = 0
@@ -287,6 +288,7 @@ nmap <leader>tb :TagbarToggle<CR>
 
 " Popup error window for syntastic
 let g:syntastic_auto_loc_list=1
+let g:syntastic_enable_signs=0
 
 " Complete options (disable preview scratch window)
 set completeopt=menu,menuone,longest
