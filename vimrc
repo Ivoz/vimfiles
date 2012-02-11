@@ -22,8 +22,6 @@ call vundle#rc()
 "
 " Requires Git - Makes sense of all these Bundle commands
 Bundle 'gmarik/vundle'
-" Tab autocompletion
-"Bundle 'ervandew/supertab'
 " Help navigation - use <CR> and <BS>
 Bundle 'juanpabloaj/help.vim'
 " Go highlighting
@@ -186,6 +184,7 @@ set showcmd
 " always display the status line, even if there is only a single window
 set laststatus=2
 
+" Using vim-powerline instead
 " customize the status line.  Do ":help statusline" for options
 "set statusline=%<%f%h%1*%m%*%r%=%3n\ \ %7(%l,%c%)%V\ %P
 
@@ -195,6 +194,9 @@ set shortmess=at
 " ===========================
 " Commands
 " ===========================
+
+"" ii insert mode exits insert mode
+inoremap ii <Esc>
 
 " Map Y to yank from cursor to end of line, like D and C
 map Y y$
@@ -208,6 +210,12 @@ nnoremap <silent> k k:noh<CR>
 
 " ,cd to change working dir to current file's
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" oo create a new line insertlessly
+nnoremap oo o<Esc>
+
+" oo create a new line insertlessly
+nnoremap OO O<Esc>
 
 " ===========================
 " Miscellaneous
