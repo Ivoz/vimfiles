@@ -7,10 +7,14 @@ set nocompatible
 filetype off
 
 if has('win32') || has('win64')
-    set rtp+=~/vimfiles/bundle/vundle
+	let $VIMHOME=expand('~/vimfiles')
+    "set rtp+=~/vimfiles/bundle/vundle
 else
-    set rtp+=~/.vim/bundle/vundle
+	let $VIMHOME=expand('~/.vim')
+    "set rtp+=~/.vim/bundle/vundle
 endif
+
+set rtp+=$VIMHOME/bundle/vundle
 
 call vundle#rc()
 
@@ -19,7 +23,7 @@ call vundle#rc()
 " Requires Git - Makes sense of all these Bundle commands
 Bundle 'gmarik/vundle'
 " Tab autocompletion
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 " Help navigation - use <CR> and <BS>
 Bundle 'juanpabloaj/help.vim'
 " Go highlighting
@@ -28,6 +32,8 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
 " Everything Python!
 "Bundle 'klen/python-mode'
+" EasyMotion - \\[f/t/w/F/T/W/etc] to fast-find
+Bundle 'Lokaltog/vim-easymotion'
 " Vim Powerline - uses Patched Fonts
 Bundle 'Lokaltog/vim-powerline'
 " TagBar for source code browsing. \tb
@@ -40,6 +46,8 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/zencoding-vim'
 " play snake! :Snake x y; i to start
 Bundle 'mfumi/snake.vim'
+" Hook up neocompl and clang-complete
+Bundle 'osyo-manga/neocomplcache-clang_complete'
 " Requires clang
 Bundle 'Rip-Rip/clang_complete'
 " Comment line / selection: \cc
@@ -48,6 +56,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 " Check for syntactic correctness!
 Bundle 'scrooloose/syntastic'
+" Awesome autocomplete
+Bundle 'Shougo/neocomplcache'
 " Fugitive - git shortcuts for vim
 " Requires Git
 Bundle 'tpope/vim-fugitive'
@@ -66,7 +76,7 @@ Bundle 'xhr/vim-nginx'
 " Better % matching
 Bundle 'matchit.zip'
 " Tab completion of snippets; <c-j> for next completion
-Bundle 'UltiSnips'
+"Bundle 'UltiSnips'
 " <c-w>o to toggle current window full-screen
 Bundle 'ZoomWin'
 
@@ -289,6 +299,7 @@ nmap <leader>tb :TagbarToggle<CR>
 " Popup error window for syntastic
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=0
+let g:syntastic_loc_list_height=4
 
 " Complete options (disable preview scratch window)
 set completeopt=menu,menuone,longest
@@ -296,8 +307,16 @@ set completeopt=menu,menuone,longest
 set pumheight=15
 
 " SuperTab option for context aware completion
-let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "context"
+
+" NeoComplComplete settings
+so $VIMHOME/source/neocompl.vim
 
 " Show clang errors in the quickfix window
 let g:clang_complete_copen = 1
 
+" use neocomplcache & clang_complete
+" add neocomplcache option
+let g:neocomplcache_force_overwrite_completefunc=1
+" add clang_complete option
+let g:clang_complete_auto=1

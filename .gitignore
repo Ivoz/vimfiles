@@ -1,4 +1,4 @@
 tags
 *.swp
-.vim/bundle/*
-!.vim/bundle/vundle
+vim/bundle/*
+!vim/bundle/vundle

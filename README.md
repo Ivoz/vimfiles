@@ -10,8 +10,8 @@ installation
 ------------
 
 1. clone to a folder, say `~/ivos-vim`
-2. `ln -s ~/ivos-vim/.vimrc ~/.vimrc`
-3. `ln -s ~/ivoz-vim/.vim ~`
+2. `ln -s ~/ivos-vim/vimrc ~/.vimrc`
+3. `ln -s ~/ivoz-vim/vim ~/.vim`
 4. `cd ~/.vim`
 5. `git submodule init`
 6. `git submodule update`
@@ -28,9 +28,7 @@ They can also require python scripting support.
 
 #### github bundles
 * gmarik/vundle `-- git`
-* ervandew/supertab
 * jnwhiteh/vim-golang
-* klen/python-mode
 * mattn/gist-vim `-- curl, git`
 * mattn/zencoding-vim
 * mfumi/snake.vim
@@ -46,7 +44,5 @@ They can also require python scripting support.
 
 #### vim-scripts bundles
 * matchit.zip
-* taglist.vim `-- exuberant-ctags`
 * mru.vim
-* ultisnips
 * zoomwin
