@@ -252,6 +252,9 @@ set pastetoggle=<F11>
 " Share windows clipboard
 set clipboard+=unnamed 
 
+" How long to wait for multi-char mappings, in ms
+set timeoutlen=300
+
 " Enable Omnicompletion
 " Windows requires Exuberant Ctags v5.7+
 filetype plugin on
