@@ -12,7 +12,7 @@ installation
 1. clone to a folder, say `~/ivos-vim`
 2. `ln -s ~/ivos-vim/vimrc ~/.vimrc`
 3. `ln -s ~/ivoz-vim/vim ~/.vim`
-4. `cd ~/.vim`
+4. `cd ~/ivos-vim`
 5. `git submodule init`
 6. `git submodule update`
 7. `vim`
