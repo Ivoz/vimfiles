@@ -48,7 +48,7 @@ Bundle 'mfumi/snake.vim'
 Bundle 'osyo-manga/neocomplcache-clang_complete'
 " Requires clang
 Bundle 'Rip-Rip/clang_complete'
-" Comment line / selection: \cc
+" Toggle comment line / selection: \c<space>
 Bundle 'scrooloose/nerdcommenter'
 " :NERDTree or \nt to browse filesystem
 Bundle 'scrooloose/nerdtree'
@@ -90,10 +90,10 @@ filetype plugin indent on
 if has('win32') || has('win64')
     set gfn=Consolas:h10
 else
-"    set gfn="DejaVu Sans Mono":h10
+	set gfn="DejaVu Sans Mono":h10
 	" Powerline font-fixing
-	set guifont="Ubuntu Mono Powerline"
-	let g:Powerline_symbols = 'fancy'
+	"set guifont="Ubuntu Mono Powerline"
+	let g:Powerline_symbols = 'compatible'
 endif
 
 " Detect screen/tmux running
@@ -144,8 +144,8 @@ set softtabstop=4
 " Set how many spaces a tab is displayed as
 set tabstop=4
 
-" Do not expand tabs into spaces
-set noexpandtab
+" Expand tabs into spaces
+set expandtab
 
 " Set vim to detect filetypes; will run ~/.vim/ftplugin/<filetype>.vim
 filetype on
@@ -190,32 +190,6 @@ set laststatus=2
 
 " Set short messages
 set shortmess=at
-
-" ===========================
-" Commands
-" ===========================
-
-"" ii insert mode exits insert mode
-inoremap ii <Esc>
-
-" Map Y to yank from cursor to end of line, like D and C
-map Y y$
-
-" ROT13 - fun
-map <F12> ggVGg?
-
-" Stop higlighting with j and k
-nnoremap <silent> j j:noh<CR>
-nnoremap <silent> k k:noh<CR>
-
-" ,cd to change working dir to current file's
-nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
-
-" oo create a new line insertlessly
-nnoremap oo o<Esc>
-
-" oo create a new line insertlessly
-nnoremap OO O<Esc>
 
 " ===========================
 " Miscellaneous
@@ -283,6 +257,35 @@ if has("gui_running")
     "set guioptions-=t
 
 endif
+
+" ===========================
+" Commands
+" ===========================
+
+" ii insert mode exits insert mode
+inoremap ii <Esc>
+
+" Map Y to yank from cursor to end of line, like D and C
+map Y y$
+
+" ROT13 - fun
+map <F12> ggVGg?
+
+" Stop higlighting with j and k
+nnoremap <silent> j j:noh<CR>
+nnoremap <silent> k k:noh<CR>
+
+" ,cd to change working dir to current file's
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" oo create a new line insertlessly
+nnoremap oo o<Esc>
+
+" oo create a new line insertlessly
+nnoremap OO O<Esc>
+
+" :W to write with sudo
+command W w !sudo tee % > /dev/null
 
 " ===========================
 " Plugins
