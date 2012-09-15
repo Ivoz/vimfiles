@@ -40,6 +40,8 @@ Bundle 'majutsushi/tagbar'
 " :Gist to paste into Gist and copy url, -p for private
 " Requires Curl
 Bundle 'mattn/gist-vim'
+" Required for gist-vim and ideone-vim
+Bundle 'mattn/webapi-vim'
 " <c-y>, to expand html
 Bundle 'mattn/zencoding-vim'
 " play snake! :Snake x y; i to start
@@ -61,6 +63,8 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'tpope/vim-fugitive'
 " Git higlighting and tidbits
 Bundle 'tpope/vim-git'
+" Haml, Sass, Scss support
+Bundle 'tpope/vim-haml'
 " Markdown highlighting
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
