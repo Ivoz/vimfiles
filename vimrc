@@ -300,7 +300,7 @@ command W w !sudo tee % > /dev/null
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 
 " Gist-Vim
-let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_clip_command = 'xclip -sel clip'
 let g:gist_detect_filetype = 1
 let g:gist_private = 1
 
