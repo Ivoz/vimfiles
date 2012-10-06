@@ -1,4 +1,4 @@
-" Vim 7.3
+"$ Vim 7.3
 
 " don't try to emulate vi's (unfriendly) behaviour
 set nocompatible  
@@ -30,7 +30,7 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
 " Everything Python!
 "Bundle 'klen/python-mode'
-" EasyMotion - \\[f/t/w/F/T/W/etc] to fast-find
+" EasyMotion - \{f,F,t,T,w,W,etc...} to fast-find
 Bundle 'Lokaltog/vim-easymotion'
 " Vim Powerline - uses Patched Fonts
 Bundle 'Lokaltog/vim-powerline'
@@ -279,8 +279,8 @@ map <F12> ggVGg?
 nnoremap <silent> j j:noh<CR>
 nnoremap <silent> k k:noh<CR>
 
-" ,cd to change working dir to current file's
-nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+" :cd to change working dir to current file's
+nnoremap :cd %:p:h<CR>:pwd<CR>
 
 " oo create a new line insertlessly
 nnoremap oo o<Esc>
@@ -313,6 +313,9 @@ nmap <leader>nt :NERDTree<CR>
 
 " Set the code explorer to \tb
 nmap <leader>tb :TagbarToggle<CR>
+ 
+" Set easymotion key to \{f,F,t,T,w,W,etc...}
+let g:EasyMotion_leader_key = '<Leader>'
 
 " Popup error window for syntastic
 let g:syntastic_auto_loc_list=1
