@@ -70,6 +70,8 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 " Easily surround text with other text
 Bundle 'tpope/vim-surround'
+" Updated ruby support
+Bundle 'vim-ruby/vim-ruby'
 " Nginx config highlighting
 Bundle 'xhr/vim-nginx'
 
@@ -152,7 +154,8 @@ set tabstop=4
 set expandtab
 
 " Set vim to detect filetypes; will run ~/.vim/ftplugin/<filetype>.vim
-filetype on
+" set automatic indentation depending upon the detected file type
+filetype plugin indent on
 
 " make sure that TABs work exactly as TABs in Makefiles 
 autocmd FileType make setlocal noexpandtab
@@ -161,8 +164,15 @@ autocmd FileType make setlocal softtabstop=0
 " Use spaces for python
 autocmd FileType python setlocal expandtab
 
-" set automatic indentation depending upon the detected file type
-filetype indent on
+" python syntax highlighting
+let python_highlight_all=1
+let python_highlight_indents=0
+"
+" Use 2-space indent for ruby
+autocmd FileType ruby,yaml setlocal shiftwidth=2
+autocmd FileType ruby,yaml setlocal tabstop=2
+autocmd FileType ruby,yaml setlocal softtabstop=2
+
 
 " indentation options for C indenting.
 "     :0  -- case labels are indented 0 spaces in from switch
@@ -235,7 +245,6 @@ set timeoutlen=300
 
 " Enable Omnicompletion
 " Windows requires Exuberant Ctags v5.7+
-filetype plugin on
 set ofu=syntaxcomplete#Complete
 
 " ===========================
@@ -279,8 +288,8 @@ map <F12> ggVGg?
 nnoremap <silent> j j:noh<CR>
 nnoremap <silent> k k:noh<CR>
 
-" :cd to change working dir to current file's
-nnoremap :cd %:p:h<CR>:pwd<CR>
+" ,cd to change working dir to current file's
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " oo create a new line insertlessly
 nnoremap oo o<Esc>
