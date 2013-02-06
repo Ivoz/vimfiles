@@ -20,6 +20,8 @@ call vundle#rc()
 
 " Github bundles
 "
+" Requies PHPUnit on path
+Bundle 'docteurklein/vim-phpunit'
 " Requires Git - Makes sense of all these Bundle commands
 Bundle 'gmarik/vundle'
 " Help navigation - use <CR> and <BS>
@@ -30,6 +32,8 @@ Bundle 'jnwhiteh/vim-golang'
 Bundle 'kien/ctrlp.vim'
 " Everything Python!
 "Bundle 'klen/python-mode'
+" NYAN CAT
+Bundle 'koron/nyancat-vim'
 " EasyMotion - \{f,F,t,T,w,W,etc...} to fast-find
 Bundle 'Lokaltog/vim-easymotion'
 " Vim Powerline - uses Patched Fonts
@@ -161,17 +165,17 @@ filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal softtabstop=0
 
-" Use spaces for python
-autocmd FileType python setlocal expandtab
+" Use spaces for python,json
+autocmd FileType python,json setlocal expandtab
 
 " python syntax highlighting
 let python_highlight_all=1
 let python_highlight_indents=0
 "
-" Use 2-space indent for ruby
-autocmd FileType ruby,yaml setlocal shiftwidth=2
-autocmd FileType ruby,yaml setlocal tabstop=2
-autocmd FileType ruby,yaml setlocal softtabstop=2
+" Use 2-space indent for ruby,yaml,json
+autocmd FileType ruby,yaml,json setlocal shiftwidth=2
+autocmd FileType ruby,yaml,json setlocal tabstop=2
+autocmd FileType ruby,yaml,json setlocal softtabstop=2
 
 
 " indentation options for C indenting.
@@ -317,11 +321,23 @@ let g:gist_private = 1
 "let g:pymode_run = 0
 "let g:pymode_lint = 0
 
+" phpunit compilation
+com! -nargs=* Phpunit make -c app <q-args> | cw
+
+" NERTree Settings
+let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$']
+let NERDTreeMouseMode=3
+let NERDTreeShowHidden=1
+let NERDTreeWinSize=30
+"autocmd VimEnter * NERDTree . | wincmd w
+
 " Set File Explorer to \nt
 nmap <leader>nt :NERDTree<CR>
 
 " Set the code explorer to \tb
 nmap <leader>tb :TagbarToggle<CR>
+
+"autocmd VimEnter * TagbarOpen
  
 " Set easymotion key to \{f,F,t,T,w,W,etc...}
 let g:EasyMotion_leader_key = '<Leader>'
