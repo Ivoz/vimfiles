@@ -14,29 +14,48 @@ else
     "set rtp+=~/.vim/bundle/vundle
 endif
 
+" Vundle
 set rtp+=$VIMHOME/bundle/vundle
-
-call vundle#rc()
-
-" Github bundles
-"
-" Requies PHPUnit on path
-Bundle 'docteurklein/vim-phpunit'
 " Requires Git - Makes sense of all these Bundle commands
 Bundle 'gmarik/vundle'
-" Help navigation - use <CR> and <BS>
-Bundle 'juanpabloaj/help.vim'
+call vundle#rc()
+
+
+"" Highlighting / Language support
+"
 " Go highlighting
 Bundle 'jnwhiteh/vim-golang'
-" Fuzzy File/Buffer/MRU finding <C-P>
-Bundle 'kien/ctrlp.vim'
+" Git higlighting and tidbits
+Bundle 'tpope/vim-git'
+" Haml, Sass, Scss support
+Bundle 'tpope/vim-haml'
+" Markdown highlighting
+Bundle 'tpope/vim-markdown'
+" Updated ruby support
+Bundle 'vim-ruby/vim-ruby'
+" Nginx config highlighting
+Bundle 'xhr/vim-nginx'
 " Everything Python!
 "Bundle 'klen/python-mode'
+
+"" Colors
+"
+" molokai
+Bundle 'tomasr/molokai'
+" Zenburn
+Bundle 'jnurmine/Zenburn'
+
+" Requies PHPUnit on path
+Bundle 'docteurklein/vim-phpunit'
+" Help navigation - use <CR> and <BS>
+Bundle 'juanpabloaj/help.vim'
+" Fuzzy File/Buffer/MRU finding <C-P>
+Bundle 'kien/ctrlp.vim'
 " NYAN CAT
 Bundle 'koron/nyancat-vim'
 " EasyMotion - \{f,F,t,T,w,W,etc...} to fast-find
 Bundle 'Lokaltog/vim-easymotion'
-" Vim Powerline - uses Patched Fonts
+" Vim Powerline - can use Patched Fonts
 Bundle 'Lokaltog/vim-powerline'
 " TagBar for source code browsing. \tb
 " Requires exuberant ctags
@@ -51,9 +70,9 @@ Bundle 'mattn/zencoding-vim'
 " play snake! :Snake x y; i to start
 Bundle 'mfumi/snake.vim'
 " Hook up neocompl and clang-complete
-Bundle 'osyo-manga/neocomplcache-clang_complete'
+"Bundle 'osyo-manga/neocomplcache-clang_complete'
 " Requires clang
-Bundle 'Rip-Rip/clang_complete'
+"Bundle 'Rip-Rip/clang_complete'
 " Toggle comment line / selection: \c<space>
 Bundle 'scrooloose/nerdcommenter'
 " :NERDTree or \nt to browse filesystem
@@ -61,30 +80,21 @@ Bundle 'scrooloose/nerdtree'
 " Check for syntactic correctness!
 Bundle 'scrooloose/syntastic'
 " Awesome autocomplete
-Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplcache'
 " Fugitive - git shortcuts for vim
 " Requires Git
 Bundle 'tpope/vim-fugitive'
-" Git higlighting and tidbits
-Bundle 'tpope/vim-git'
-" Haml, Sass, Scss support
-Bundle 'tpope/vim-haml'
-" Markdown highlighting
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 " Easily surround text with other text
 Bundle 'tpope/vim-surround'
-" Updated ruby support
-Bundle 'vim-ruby/vim-ruby'
-" Nginx config highlighting
-Bundle 'xhr/vim-nginx'
+" Code Completion
+Bundle 'Valloric/YouCompleteMe'
 
-" Vim-scripts bundles
+
+"" Vim-scripts bundles
 "
 " Better % matching
 Bundle 'matchit.zip'
-" Tab completion of snippets; <c-j> for next completion
-"Bundle 'UltiSnips'
 " <c-w>o to toggle current window full-screen
 Bundle 'ZoomWin'
 
@@ -119,13 +129,13 @@ endif
 " Set colorscheme
 colorscheme delek
 if &t_Co == 256
-    colorscheme sunburst
+    colorscheme zenburn
 endif
 
 " perform syntax highlighting (colours code by syntax)
 syntax enable
 
-" Set the background scheme to dark
+" Set the background scheme to dark // can reset coloscheme
 "set background=dark
 
 " when inserting a bracket, jump briefly to matching bracket
@@ -168,10 +178,6 @@ autocmd FileType make setlocal softtabstop=0
 " Use spaces for python,json
 autocmd FileType python,json setlocal expandtab
 
-" python syntax highlighting
-let python_highlight_all=1
-let python_highlight_indents=0
-"
 " Use 2-space indent for ruby,yaml,json
 autocmd FileType ruby,yaml,json setlocal shiftwidth=2
 autocmd FileType ruby,yaml,json setlocal tabstop=2
@@ -249,7 +255,7 @@ set timeoutlen=300
 
 " Enable Omnicompletion
 " Windows requires Exuberant Ctags v5.7+
-set ofu=syntaxcomplete#Complete
+"set ofu=syntaxcomplete#Complete
 
 " ===========================
 " GVim
@@ -285,7 +291,7 @@ inoremap jj <Esc>
 " Map Y to yank from cursor to end of line, like D and C
 map Y y$
 
-" ROT13 - fun
+" ROT13 - funtimes
 map <F12> ggVGg?
 
 " Stop higlighting with j and k
@@ -317,14 +323,11 @@ let g:gist_clip_command = 'xclip -sel clip'
 let g:gist_detect_filetype = 1
 let g:gist_private = 1
 
-" Python-mode settings
-"let g:pymode_run = 0
-"let g:pymode_lint = 0
 
 " phpunit compilation
 com! -nargs=* Phpunit make -c app <q-args> | cw
 
-" NERTree Settings
+" NERDTree
 let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$']
 let NERDTreeMouseMode=3
 let NERDTreeShowHidden=1
@@ -347,22 +350,25 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=0
 let g:syntastic_loc_list_height=4
 
+"" Python-mode
+"let g:pymode_run = 0
+"let g:pymode_lint = 0
+" python syntax highlighting
+"let python_highlight_all=1
+"let python_highlight_indents=0
+
+"" NeoComplComplete
+"so $VIMHOME/source/neocompl.vim
 " Complete options (disable preview scratch window)
-set completeopt=menu,menuone,longest
+"set completeopt=menu,menuone,longest
 " Limit popup menu height
-set pumheight=15
-
-" SuperTab option for context aware completion
-"let g:SuperTabDefaultCompletionType = "context"
-
-" NeoComplComplete settings
-so $VIMHOME/source/neocompl.vim
+"set pumheight=15
 
 " Show clang errors in the quickfix window
-let g:clang_complete_copen = 1
+"let g:clang_complete_copen = 1
 
 " use neocomplcache & clang_complete
 " add neocomplcache option
-let g:neocomplcache_force_overwrite_completefunc=1
+"let g:neocomplcache_force_overwrite_completefunc=1
 " add clang_complete option
-let g:clang_complete_auto=1
+"let g:clang_complete_auto=1
