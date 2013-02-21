@@ -16,15 +16,19 @@ endif
 
 " Vundle
 set rtp+=$VIMHOME/bundle/vundle
+call vundle#rc()
 " Requires Git - Makes sense of all these Bundle commands
 Bundle 'gmarik/vundle'
-call vundle#rc()
 
 
 "" Highlighting / Language support
 "
 " Go highlighting
 Bundle 'jnwhiteh/vim-golang'
+" Html5 highlighting
+Bundle 'othree/html5.vim'
+" Javascript indentation/highlighting
+Bundle 'pangloss/vim-javascript'
 " Git higlighting and tidbits
 Bundle 'tpope/vim-git'
 " Haml, Sass, Scss support
@@ -45,6 +49,8 @@ Bundle 'tomasr/molokai'
 " Zenburn
 Bundle 'jnurmine/Zenburn'
 
+"" Functionality
+"
 " Requies PHPUnit on path
 Bundle 'docteurklein/vim-phpunit'
 " Help navigation - use <CR> and <BS>
@@ -52,7 +58,7 @@ Bundle 'juanpabloaj/help.vim'
 " Fuzzy File/Buffer/MRU finding <C-P>
 Bundle 'kien/ctrlp.vim'
 " NYAN CAT
-Bundle 'koron/nyancat-vim'
+"Bundle 'koron/nyancat-vim'
 " EasyMotion - \{f,F,t,T,w,W,etc...} to fast-find
 Bundle 'Lokaltog/vim-easymotion'
 " Vim Powerline - can use Patched Fonts
@@ -68,15 +74,17 @@ Bundle 'mattn/webapi-vim'
 " <c-y>, to expand html
 Bundle 'mattn/zencoding-vim'
 " play snake! :Snake x y; i to start
-Bundle 'mfumi/snake.vim'
+"Bundle 'mfumi/snake.vim'
 " Hook up neocompl and clang-complete
 "Bundle 'osyo-manga/neocomplcache-clang_complete'
+" Delimiter autocompletion
+Bundle 'Raimondi/delimitMate'
 " Requires clang
 "Bundle 'Rip-Rip/clang_complete'
 " Toggle comment line / selection: \c<space>
 Bundle 'scrooloose/nerdcommenter'
 " :NERDTree or \nt to browse filesystem
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 " Check for syntactic correctness!
 Bundle 'scrooloose/syntastic'
 " Awesome autocomplete
@@ -87,9 +95,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 " Easily surround text with other text
 Bundle 'tpope/vim-surround'
-" Code Completion
+" EasyTree for FS browsing
+Bundle 'troydm/easytree.vim'
+" Code Completion, requires Clang >= 3.2
 Bundle 'Valloric/YouCompleteMe'
-
 
 "" Vim-scripts bundles
 "
@@ -97,7 +106,6 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'matchit.zip'
 " <c-w>o to toggle current window full-screen
 Bundle 'ZoomWin'
-
 
 
 filetype plugin indent on
@@ -328,14 +336,17 @@ let g:gist_private = 1
 com! -nargs=* Phpunit make -c app <q-args> | cw
 
 " NERDTree
-let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$']
-let NERDTreeMouseMode=3
-let NERDTreeShowHidden=1
-let NERDTreeWinSize=30
+"let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$']
+"let NERDTreeMouseMode=3
+"let NERDTreeShowHidden=1
+"let NERDTreeWinSize=30
 "autocmd VimEnter * NERDTree . | wincmd w
 
 " Set File Explorer to \nt
-nmap <leader>nt :NERDTree<CR>
+"nmap <leader>nt :NERDTree<CR>
+
+" Easy tree is set to \et
+nmap <leader>et :EasyTree<CR>
 
 " Set the code explorer to \tb
 nmap <leader>tb :TagbarToggle<CR>
@@ -349,6 +360,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=0
 let g:syntastic_loc_list_height=4
+let g:syntastic_python_checkers=['flake8']
 
 "" Python-mode
 "let g:pymode_run = 0
