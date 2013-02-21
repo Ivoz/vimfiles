@@ -1,4 +1,4 @@
-my vim/gvim configuration
+My vim/gvim configuration
 =========================
 
 i've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
@@ -6,7 +6,7 @@ i've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
 i use [vundle](https://github.com/gmarik/vundle) to organise plugins. it's awesome; you should use it.
 hopefully something like it will become default in vim 8.
 
-installation
+Installation
 ------------
 
 1. clone to a folder, say `~/ivos-vim`
@@ -19,30 +19,13 @@ installation
 8. `:BundleInstall`
 9. done!
 
-my bundles:
+My bundles:
 -----------
 
-Some have external dependencies, shown after the --
+Some have external dependencies.
 
 They can also require python scripting support.
 
-#### github bundles
-* gmarik/vundle `-- git`
-* jnwhiteh/vim-golang
-* mattn/gist-vim `-- curl, git`
-* mattn/zencoding-vim
-* mfumi/snake.vim
-* rip-rip/clang_complete `-- clang`
-* scrooloose/nerdcommenter
-* scrooloose/nerdtree
-* tpope/vim-fugitive `-- git`
-* tpope/vim-git
-* tpope/vim-markdown
-* tpope/vim-repeat
-* tpope/vim-surround
-* xhr/vim-nginx
+Please see the top of `vimrc` for my list of current plugins, it changes frequently!
 
-#### vim-scripts bundles
-* matchit.zip
-* mru.vim
-* zoomwin
+Hottest bundle: [YouCompleteMe](https://github.com/Valloric/YouCompleteMe) - up and coming completion engine!
