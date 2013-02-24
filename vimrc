@@ -23,6 +23,8 @@ Bundle 'gmarik/vundle'
 
 "" Highlighting / Language support
 "
+" Cool
+Bundle 'cool.vim'
 " Go highlighting
 Bundle 'jnwhiteh/vim-golang'
 " Html5 highlighting
@@ -73,6 +75,8 @@ Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
 " <c-y>, to expand html
 Bundle 'mattn/zencoding-vim'
+" Give vim a clean room to edit in with \V
+Bundle 'mikewest/vimroom'
 " play snake! :Snake x y; i to start
 "Bundle 'mfumi/snake.vim'
 " Hook up neocompl and clang-complete
@@ -322,6 +326,9 @@ command W w !sudo tee % > /dev/null
 " Plugins
 " ===========================
 
+" Enable cool highlighting
+au BufNewFile,BufRead *.cool setf cool 
+
 " Super re-tab -use :'<,'>SuperRetab n 
 " to convert n spaces to tabs, at the beginning of lines
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
@@ -361,6 +368,9 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=0
 let g:syntastic_loc_list_height=4
 let g:syntastic_python_checkers=['flake8']
+
+" Vimroom
+let g:vimroom_sidebar_height=1
 
 "" Python-mode
 "let g:pymode_run = 0
