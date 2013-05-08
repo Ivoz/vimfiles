@@ -29,8 +29,8 @@ Bundle 'cool.vim'
 Bundle 'jnwhiteh/vim-golang'
 " Html5 highlighting
 Bundle 'othree/html5.vim'
-" Javascript indentation/highlighting
-Bundle 'pangloss/vim-javascript'
+" Javascript
+Bundle 'othree/vim-javascript-syntax'
 " Git higlighting and tidbits
 Bundle 'tpope/vim-git'
 " Haml, Sass, Scss support
@@ -190,10 +190,10 @@ autocmd FileType make setlocal softtabstop=0
 " Use spaces for python,json
 autocmd FileType python,json setlocal expandtab
 
-" Use 2-space indent for ruby,yaml,json
-autocmd FileType ruby,yaml,json setlocal shiftwidth=2
-autocmd FileType ruby,yaml,json setlocal tabstop=2
-autocmd FileType ruby,yaml,json setlocal softtabstop=2
+" Use 2-space indent for html,ruby,yaml,json
+autocmd FileType html,ruby,yaml,json setlocal shiftwidth=2
+autocmd FileType html,ruby,yaml,json setlocal tabstop=2
+autocmd FileType html,ruby,yaml,json setlocal softtabstop=2
 
 
 " indentation options for C indenting.
@@ -268,6 +268,10 @@ set timeoutlen=300
 " Enable Omnicompletion
 " Windows requires Exuberant Ctags v5.7+
 "set ofu=syntaxcomplete#Complete
+
+" Directory to save .swp files in
+set directory=~/.vim-tmp//,~/.tmp//,/var/tmp//,/tmp//,.
+
 
 " ===========================
 " GVim
