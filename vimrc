@@ -3,18 +3,13 @@
 " don't try to emulate vi's (unfriendly) behaviour
 set nocompatible  
 
-" Vundle
+"" Vundle
 filetype off
-
 if has('win32') || has('win64')
 	let $VIMHOME=expand('~/vimfiles')
-    "set rtp+=~/vimfiles/bundle/vundle
 else
 	let $VIMHOME=expand('~/.vim')
-    "set rtp+=~/.vim/bundle/vundle
 endif
-
-" Vundle
 set rtp+=$VIMHOME/bundle/vundle
 call vundle#rc()
 " Requires Git - Makes sense of all these Bundle commands
@@ -79,20 +74,14 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'mikewest/vimroom'
 " play snake! :Snake x y; i to start
 "Bundle 'mfumi/snake.vim'
-" Hook up neocompl and clang-complete
-"Bundle 'osyo-manga/neocomplcache-clang_complete'
 " Delimiter autocompletion
 Bundle 'Raimondi/delimitMate'
-" Requires clang
-"Bundle 'Rip-Rip/clang_complete'
 " Toggle comment line / selection: \c<space>
 Bundle 'scrooloose/nerdcommenter'
 " :NERDTree or \nt to browse filesystem
 "Bundle 'scrooloose/nerdtree'
 " Check for syntactic correctness!
 Bundle 'scrooloose/syntastic'
-" Awesome autocomplete
-"Bundle 'Shougo/neocomplcache'
 " Fugitive - git shortcuts for vim
 " Requires Git
 Bundle 'tpope/vim-fugitive'
@@ -111,8 +100,6 @@ Bundle 'matchit.zip'
 " <c-w>o to toggle current window full-screen
 Bundle 'ZoomWin'
 
-
-filetype plugin indent on
 
 " ===========================
 " Appearance
@@ -148,7 +135,7 @@ endif
 syntax enable
 
 " Set the background scheme to dark // can reset coloscheme
-"set background=dark
+set background=dark
 
 " when inserting a bracket, jump briefly to matching bracket
 set showmatch
@@ -195,6 +182,11 @@ autocmd FileType html,ruby,yaml,json setlocal shiftwidth=2
 autocmd FileType html,ruby,yaml,json setlocal tabstop=2
 autocmd FileType html,ruby,yaml,json setlocal softtabstop=2
 
+" Use 8-space tabbed-indent for c, go
+autocmd FileType c,go setlocal shiftwidth=8
+autocmd FileType c,go setlocal tabstop=8
+autocmd FileType c,go setlocal softtabstop=8
+autocmd FileType c,go setlocal noexpandtab
 
 " indentation options for C indenting.
 "     :0  -- case labels are indented 0 spaces in from switch
@@ -207,7 +199,7 @@ autocmd FileType html,ruby,yaml,json setlocal softtabstop=2
 set cinoptions=:0,m1,b1,t0,c1
 
 " for non-C files (such as assembly language), use autoindenting
-set autoindent smartindent
+set autoindent
 set smarttab
 
 " ===========================
@@ -336,6 +328,10 @@ au BufNewFile,BufRead *.cool setf cool
 " Super re-tab -use :'<,'>SuperRetab n 
 " to convert n spaces to tabs, at the beginning of lines
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
+
+
+" Fix expansion of brackets with delimitMate
+let g:delimitMate_expand_cr = 1
 
 " Gist-Vim
 let g:gist_clip_command = 'xclip -sel clip'
