@@ -378,19 +378,3 @@ let g:vimroom_sidebar_height=1
 " python syntax highlighting
 "let python_highlight_all=1
 "let python_highlight_indents=0
-
-"" NeoComplComplete
-"so $VIMHOME/source/neocompl.vim
-" Complete options (disable preview scratch window)
-"set completeopt=menu,menuone,longest
-" Limit popup menu height
-"set pumheight=15
-
-" Show clang errors in the quickfix window
-"let g:clang_complete_copen = 1
-
-" use neocomplcache & clang_complete
-" add neocomplcache option
-"let g:neocomplcache_force_overwrite_completefunc=1
-" add clang_complete option
-"let g:clang_complete_auto=1
