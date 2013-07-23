@@ -1,5 +1,4 @@
 "$ Vim 7.3
-
 " don't try to emulate vi's (unfriendly) behaviour
 set nocompatible  
 
@@ -151,7 +150,7 @@ set mouse=a
 set list
 
 " Which characters to show
-set listchars=eol:$,tab:>-,trail:-
+set listchars=tab:>-,trail:-
 
 " ===========================
 " Indentation and tabs
@@ -269,7 +268,7 @@ set timeoutlen=300
 "set ofu=syntaxcomplete#Complete
 
 " Directory to save .swp files in
-set directory=~/.vim-tmp//,~/.tmp//,/var/tmp//,/tmp//,.
+set directory=~/.vim-tmp//,~/tmp//,/var/tmp//,/tmp//,.
 
 
 " ===========================
