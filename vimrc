@@ -312,8 +312,8 @@ endif
 " Commands
 " ===========================
 
-" jj insert mode exits insert mode
-inoremap jj <Esc>
+" jk insert mode exits insert mode
+inoremap jk <Esc>
 
 " Map Y to yank from cursor to end of line, like D and C
 map Y y$
