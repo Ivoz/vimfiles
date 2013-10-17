@@ -17,11 +17,13 @@ Bundle 'gmarik/vundle'
 
 "" Highlighting / Language support
 "
-" Cool
-Bundle 'cool.vim'
-" Go highlighting
+" Jade
+Bundle 'digitaltoad/vim-jade'
+" Go
 Bundle 'jnwhiteh/vim-golang'
-" Html5 highlighting
+" ReStructedText support
+Bundle 'mitsuhiko/vim-rst'
+" Html5
 Bundle 'othree/html5.vim'
 " Javascript
 Bundle 'othree/vim-javascript-syntax'
@@ -29,21 +31,20 @@ Bundle 'othree/vim-javascript-syntax'
 Bundle 'tpope/vim-git'
 " Haml, Sass, Scss support
 Bundle 'tpope/vim-haml'
-" Markdown highlighting
+" Markdown
 Bundle 'tpope/vim-markdown'
 " Updated ruby support
 Bundle 'vim-ruby/vim-ruby'
-" Nginx config highlighting
+" Nginx config
 Bundle 'xhr/vim-nginx'
 " Everything Python!
 "Bundle 'klen/python-mode'
 
 "" Colors
-"
-" molokai
-Bundle 'tomasr/molokai'
-" Zenburn
-Bundle 'jnurmine/Zenburn'
+" Jellehbeanz
+Bundle 'nanotech/jellybeans.vim'
+" CSS Colours
+Bundle 'ap/vim-css-color'
 
 "" Functionality
 "
@@ -57,8 +58,8 @@ Bundle 'kien/ctrlp.vim'
 "Bundle 'koron/nyancat-vim'
 " EasyMotion, to fast-find - \{f,F,t,T,w,W,etc...} 
 Bundle 'Lokaltog/vim-easymotion'
-" Vim Powerline - can use Patched Fonts
-Bundle 'Lokaltog/vim-powerline'
+" Powered up status line
+Bundle 'bling/vim-airline'
 " TagBar for source code browsing - \tb
 " Requires exuberant ctags
 Bundle 'majutsushi/tagbar'
@@ -68,11 +69,9 @@ Bundle 'mattn/gist-vim'
 " Required for gist-vim and ideone-vim
 Bundle 'mattn/webapi-vim'
 " To expand html - <c-y>
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 " Give vim a clean room to edit in with \V
 Bundle 'mikewest/vimroom'
-" Play snake! :Snake x y; i to start
-"Bundle 'mfumi/snake.vim'
 " Delimiter autocompletion
 Bundle 'Raimondi/delimitMate'
 " Check for syntactic correctness!
@@ -83,6 +82,7 @@ Bundle 'SirVer/ultisnips'
 Bundle "tomtom/tcomment_vim"
 " Fugitive - git shortcuts for vim
 Bundle 'tpope/vim-fugitive'
+" Easily repeat the below surroundings
 Bundle 'tpope/vim-repeat'
 " Easily surround text with other text
 Bundle 'tpope/vim-surround'
@@ -108,13 +108,10 @@ if has('win32') || has('win64')
     set gfn=Consolas:h10
 else
     set gfn="DejaVu Sans Mono":h10
-    " Powerline font-fixing
-    "set guifont="Ubuntu Mono Powerline"
-    let g:Powerline_symbols = 'compatible'
 endif
 
 " Detect screen/tmux running
-if match($TERM, "screen")!=-1
+if match($TERM, "screen") != -1
   set term=screen-256color
 endif
 
@@ -124,16 +121,16 @@ if ($COLORTERM == 'gnome-terminal') || ($TERM == 'xterm-256color')
 endif
 
 " Set colorscheme
-colorscheme delek
+colorscheme jellybeans
 if &t_Co == 256
-    colorscheme zenburn
+    colorscheme jellybeans
 endif
 
 " Perform syntax highlighting (colours code by syntax)
 syntax enable
 
 " Set the background scheme to dark // can reset coloscheme
-set background=dark
+" set background=dark
 
 " When inserting a bracket, jump briefly to matching bracket
 set showmatch
@@ -151,6 +148,10 @@ set list
 
 " Which characters to show
 set listchars=tab:>-,trail:-
+
+" Highlight the 80th column
+set textwidth=80
+set colorcolumn=+1
 
 " ===========================
 " Indentation and tabs
@@ -180,13 +181,18 @@ filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal softtabstop=0
 
-" Use spaces for python,json
-autocmd FileType python,json setlocal expandtab
+" Use spaces for python
+autocmd FileType python setlocal expandtab
 
-" Use 2-space indent for html,ruby,yaml,json
-autocmd FileType html,ruby,yaml,json setlocal shiftwidth=2
-autocmd FileType html,ruby,yaml,json setlocal tabstop=2
-autocmd FileType html,ruby,yaml,json setlocal softtabstop=2
+" Use 2-space indent for html,ruby,yaml
+autocmd FileType html,css,scss,jade,ruby,yaml setlocal shiftwidth=2
+autocmd FileType html,css,scss,jade,ruby,yaml setlocal tabstop=2
+autocmd FileType html,css,scss,jade,ruby,yaml setlocal softtabstop=2
+
+" Deal with json as a file extension (filetype javascript)
+autocmd BufNewFile,BufRead *.json setlocal shiftwidth=2
+autocmd BufNewFile,BufRead *.json setlocal tabstop=2
+autocmd BufNewFile,BufRead *.json setlocal softtabstop=2
 
 " Use 8-space tabbed-indent for c, go
 autocmd FileType c,go setlocal shiftwidth=8
@@ -196,17 +202,21 @@ autocmd FileType c,go setlocal noexpandtab
 
 " Indentation options for C indenting.
 "     :0  -- case labels are indented 0 spaces in from switch
-"     (2  -- indent 2 spaces within unclosed parentheses
+"     (0  -- indent 0 spaces within unclosed parentheses
 "     m1  -- line up close parentheses with start of opening line
 "     b1  -- align break with its case label
 "     t0  -- function return type declaration not indented
 "     c1  -- indent text inbetween comments by 1
 " there are _many_ more options; do ":help cinoptions-values" to see them
-set cinoptions=:0,m1,b1,t0,c1
+set cinoptions=:0,(0,m1,b1,t0,c1,U1,w1,j1,J1
 
 " For non-C files (such as assembly language), use autoindenting
 set autoindent
 set smarttab
+
+let g:pyindent_open_paren = '&sw'
+let g:pyindent_nested_paren = '&sw'
+let g:pyindent_continue = '&sw'
 
 " ===========================
 " Status line
@@ -218,7 +228,7 @@ set showcmd
 " Always display the status line, even if there is only a single window
 set laststatus=2
 
-" Using vim-powerline instead
+" Using airline instead
 " customize the status line.  Do ":help statusline" for options
 "set statusline=%<%f%h%1*%m%*%r%=%3n\ \ %7(%l,%c%)%V\ %P
 
@@ -259,6 +269,9 @@ set pastetoggle=<F11>
 
 " Share windows clipboard
 set clipboard+=unnamed 
+
+" Set spelling language
+set spelllang=en_au
 
 " How long to wait for multi-char mappings, in ms
 set timeoutlen=300
