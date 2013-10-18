@@ -121,10 +121,8 @@ if ($COLORTERM == 'gnome-terminal') || ($TERM == 'xterm-256color')
 endif
 
 " Set colorscheme
+colorscheme delek " guaranteed to work
 colorscheme jellybeans
-if &t_Co == 256
-    colorscheme jellybeans
-endif
 
 " Perform syntax highlighting (colours code by syntax)
 syntax enable
