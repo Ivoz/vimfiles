@@ -10,8 +10,8 @@ Hopefully something like it will become default in vim 8.
 Installation
 ------------
 
-1. clone to your vimrc folder (`~/.vim`)
-2. `cd ~/.vim
+1. `git clone https://github.com/Ivoz/vimfiles.git ~/.vim`
+2. `cd ~/.vim`
 3. `git submodule init`
 4. `git submodule update`
 5. If vim < 7.3, `ln -s ~/.vim/vimrc ~/.vimrc`
@@ -22,7 +22,7 @@ Installation
 My bundles:
 -----------
 
-Some have external dependencies.
+Some have external dependencies, like YouCompleteMe.
 
 They can also require python scripting support.
 
