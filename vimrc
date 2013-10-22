@@ -121,7 +121,7 @@ if ($COLORTERM == 'gnome-terminal') || ($TERM == 'xterm-256color')
 endif
 
 " Set colorscheme
-colorscheme delek " guaranteed to work
+colorscheme delek " inbuilt fallback theme
 colorscheme jellybeans
 
 " Perform syntax highlighting (colours code by syntax)
@@ -152,6 +152,23 @@ set textwidth=80
 set colorcolumn=+1
 
 " ===========================
+" Status line
+" ===========================
+
+" Display incomplete commands
+set showcmd
+
+" Always display the status line, even if there is only a single window
+set laststatus=2
+
+" Using airline instead
+" customize the status line.  Do ":help statusline" for options
+"set statusline=%<%f%h%1*%m%*%r%=%3n\ \ %7(%l,%c%)%V\ %P
+
+" Set short messages
+set shortmess=at
+
+" ===========================
 " Indentation and tabs
 " ===========================
 
@@ -179,10 +196,10 @@ filetype plugin indent on
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal softtabstop=0
 
-" Use spaces for python
+" Always use spaces for python
 autocmd FileType python setlocal expandtab
 
-" Use 2-space indent for html,ruby,yaml
+" Use 2-space indent for html,css,scss,ruby,yaml
 autocmd FileType html,css,scss,jade,ruby,yaml setlocal shiftwidth=2
 autocmd FileType html,css,scss,jade,ruby,yaml setlocal tabstop=2
 autocmd FileType html,css,scss,jade,ruby,yaml setlocal softtabstop=2
@@ -212,26 +229,10 @@ set cinoptions=:0,(0,m1,b1,t0,c1,U1,w1,j1,J1
 set autoindent
 set smarttab
 
+" Python indentation options
 let g:pyindent_open_paren = '&sw'
 let g:pyindent_nested_paren = '&sw'
 let g:pyindent_continue = '&sw'
-
-" ===========================
-" Status line
-" ===========================
-
-" Display incomplete commands
-set showcmd
-
-" Always display the status line, even if there is only a single window
-set laststatus=2
-
-" Using airline instead
-" customize the status line.  Do ":help statusline" for options
-"set statusline=%<%f%h%1*%m%*%r%=%3n\ \ %7(%l,%c%)%V\ %P
-
-" Set short messages
-set shortmess=at
 
 " ===========================
 " Miscellaneous
@@ -274,13 +275,8 @@ set spelllang=en_au
 " How long to wait for multi-char mappings, in ms
 set timeoutlen=300
 
-" Enable Omnicompletion
-" Windows requires Exuberant Ctags v5.7+
-"set ofu=syntaxcomplete#Complete
-
 " Directory to save .swp files in
 set directory=~/.vim-tmp//,~/tmp//,/var/tmp//,/tmp//,.
-
 
 " ===========================
 " GVim
@@ -288,7 +284,6 @@ set directory=~/.vim-tmp//,~/tmp//,/var/tmp//,/tmp//,.
 
 if has("gui_running")
     colorscheme sunburst
-
 
     " No menu or toolbar
     "set guioptions-=m
@@ -310,7 +305,7 @@ endif
 " Commands
 " ===========================
 
-" jk insert mode exits insert mode
+" jk exits insert mode
 inoremap jk <Esc>
 
 " Map Y to yank from cursor to end of line, like D and C
@@ -323,7 +318,7 @@ map <F12> ggVGg?
 nnoremap <silent> j j:noh<CR>
 nnoremap <silent> k k:noh<CR>
 
-" ,cd to change working dir to current file's
+" <leader>cd to change working dir to current file's
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " oo create a new line insertlessly below
@@ -339,10 +334,7 @@ command W w !sudo tee % > /dev/null
 " Plugins
 " ===========================
 
-" Enable cool highlighting
-au BufNewFile,BufRead *.cool setf cool 
-
-" Super re-tab -use :'<,'>SuperRetab n 
+" Super re-tab - use :'<,'>SuperRetab n
 " to convert n spaces to tabs, at the beginning of lines
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 
@@ -357,11 +349,11 @@ let g:gist_private = 1
 " phpunit compilation
 com! -nargs=* Phpunit make -c app <q-args> | cw
 
-" Easy tree is set to \et
+" Easy tree is set to <leader>et
 nmap <leader>et :EasyTree<CR>
 let g:easytree_ignore_files=['*.swp','*.py[dcob]','*.rpyc']
 
-" Set the code explorer to \tb
+" Set the code explorer to <leader>tb
 nmap <leader>tb :TagbarToggle<CR>
 
 "autocmd VimEnter * TagbarOpen
@@ -378,7 +370,7 @@ let g:syntastic_python_checkers=['flake8']
 " Vimroom
 let g:vimroom_sidebar_height=1
 
-" Ultisnip + YVM 'integration'
+" Ultisnip + YCM 'integration'
 function! g:UltiSnips_Complete()
     call UltiSnips_ExpandSnippet()
     if g:ulti_expand_res == 0
@@ -396,5 +388,6 @@ endfunction
 
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
+
 " Stop completion with enter, in addition to default ctrl+y
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
