@@ -199,6 +199,9 @@ autocmd FileType make setlocal softtabstop=0
 " Always use spaces for python
 autocmd FileType python setlocal expandtab
 
+" filetypes to turn on spelling for
+autocmd FileType markdown,rst,txt setlocal spell
+
 " Use 2-space indent for html,css,scss,ruby,yaml
 autocmd FileType html,css,scss,jade,ruby,yaml setlocal shiftwidth=2
 autocmd FileType html,css,scss,jade,ruby,yaml setlocal tabstop=2
@@ -338,13 +341,21 @@ command W w !sudo tee % > /dev/null
 " to convert n spaces to tabs, at the beginning of lines
 :command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '│'
+let g:airline_left_sep = '»'
+let g:airline_right_sep = '«'
+
 " Fix expansion of brackets with delimitMate
 let g:delimitMate_expand_cr = 1
 
 " Gist-Vim
-let g:gist_clip_command = 'xclip -sel clip'
+let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_detect_filetype = 1
-let g:gist_private = 1
+let g:gist_post_private = 1
+let g:gist_open_browser_after_post = 1
 
 " phpunit compilation
 com! -nargs=* Phpunit make -c app <q-args> | cw
