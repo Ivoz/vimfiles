@@ -148,8 +148,7 @@ set list
 set listchars=tab:>-,trail:-
 
 " Highlight the 80th column
-set textwidth=80
-set colorcolumn=+1
+set colorcolumn=81
 
 " ===========================
 " Status line
