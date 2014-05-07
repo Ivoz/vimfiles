@@ -1,6 +1,6 @@
 "$ Vim 7.3
 " don't try to emulate vi's (unfriendly) behaviour
-set nocompatible  
+set nocompatible
 
 "" Vundle
 filetype off
@@ -9,95 +9,100 @@ if has('win32') || has('win64')
 else
     let $VIMHOME=expand('~/.vim')
 endif
-set rtp+=$VIMHOME/bundle/vundle
-call vundle#rc()
-" Requires Git - Makes sense of all these Bundle commands
-Bundle 'gmarik/vundle'
+set rtp+=$VIMHOME/bundle/Vundle.vim
+call vundle#begin()
+" Requires Git - Makes sense of all these Plugin commands
+Plugin 'gmarik/Vundle.vim'
 
 
 "" Highlighting / Language support
 "
 " Jade
-Bundle 'digitaltoad/vim-jade'
+Plugin 'digitaltoad/vim-jade'
 " Go
-Bundle 'jnwhiteh/vim-golang'
+Plugin 'jnwhiteh/vim-golang'
+" Actionscript
+Plugin 'jeroenbourgois/vim-actionscript'
 " ReStructedText support
-Bundle 'mitsuhiko/vim-rst'
+Plugin 'mitsuhiko/vim-rst'
 " Html5
-Bundle 'othree/html5.vim'
+Plugin 'othree/html5.vim'
 " Javascript
-Bundle 'othree/vim-javascript-syntax'
+Plugin 'othree/vim-javascript-syntax'
 " Git higlighting and tidbits
-Bundle 'tpope/vim-git'
+Plugin 'tpope/vim-git'
 " Haml, Sass, Scss support
-Bundle 'tpope/vim-haml'
+Plugin 'tpope/vim-haml'
 " Markdown
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
 " Updated ruby support
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'vim-ruby/vim-ruby'
 " Nginx config
-Bundle 'xhr/vim-nginx'
+Plugin 'xhr/vim-nginx'
 " Everything Python!
-"Bundle 'klen/python-mode'
+"Plugin 'klen/python-mode'
 
 "" Colors
 " Jellehbeanz
-Bundle 'nanotech/jellybeans.vim'
+Plugin 'nanotech/jellybeans.vim'
 " CSS Colours
-Bundle 'ap/vim-css-color'
+Plugin 'ap/vim-css-color'
 
 "" Functionality
 "
 " Requies PHPUnit on path
-Bundle 'docteurklein/vim-phpunit'
+Plugin 'docteurklein/vim-phpunit'
 " Help navigation - use <CR> and <BS>
-Bundle 'juanpabloaj/help.vim'
+Plugin 'juanpabloaj/help.vim'
 " Fuzzy File/Buffer/MRU finding - <C-P>
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " NYAN CAT
-"Bundle 'koron/nyancat-vim'
+"Plugin 'koron/nyancat-vim'
 " EasyMotion, to fast-find - \{f,F,t,T,w,W,etc...} 
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 " Powered up status line
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " TagBar for source code browsing - \tb
 " Requires exuberant ctags
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 " :Gist to paste into Gist and copy url, -p for private
 " Requires Curl
-Bundle 'mattn/gist-vim'
+Plugin 'mattn/gist-vim'
 " Required for gist-vim and ideone-vim
-Bundle 'mattn/webapi-vim'
+Plugin 'mattn/webapi-vim'
 " To expand html - <c-y>
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 " Give vim a clean room to edit in with \V
-Bundle 'mikewest/vimroom'
+Plugin 'mikewest/vimroom'
 " Delimiter autocompletion
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 " Check for syntactic correctness!
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " Snippets
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " Commenting - gc{motion} or gcc (line)
-Bundle "tomtom/tcomment_vim"
+Plugin 'tomtom/tcomment_vim'
 " Fugitive - git shortcuts for vim
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Easily repeat the below surroundings
-Bundle 'tpope/vim-repeat'
+
+Plugin 'tpope/vim-repeat'
 " Easily surround text with other text
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " EasyTree for FS browsing - \et
-Bundle 'troydm/easytree.vim'
+Plugin 'troydm/easytree.vim'
 " Code Completion, C++ requires Clang >= 3.2
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 "" Vim-scripts bundles
 "
 " Better % matching
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 " <c-w>o to toggle current window full-screen
-Bundle 'ZoomWin'
+Plugin 'ZoomWin'
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 " ===========================
 " Appearance
@@ -217,6 +222,9 @@ autocmd FileType c,go setlocal tabstop=8
 autocmd FileType c,go setlocal softtabstop=8
 autocmd FileType c,go setlocal noexpandtab
 
+" Saltstack sls files are yaml
+autocmd BufNewFile,BufRead *.sls setlocal filetype=yaml
+
 " Indentation options for C indenting.
 "     :0  -- case labels are indented 0 spaces in from switch
 "     (0  -- indent 0 spaces within unclosed parentheses
@@ -240,17 +248,26 @@ let g:pyindent_continue = '&sw'
 " Miscellaneous
 " ===========================
 
+" Share windows clipboard
+set clipboard^=unnamed
+
+" Directory to save .swp files in
+set directory=~/.vim-tmp//,~/tmp//,/var/tmp//,/tmp//,.
+
 " Set file encoding to utf8
 set encoding=utf8
+
+" Auto-detect format based on EOL, but choose unix by default
+set fileformats=unix,mac,dos
+
+" Enable replace-all by default
+set gdefault
 
 " Keep 100 lines of command line history
 set history=100
 
 " Highlight search matches
 set hlsearch
-
-" Enable replace-all by default
-set gdefault
 
 " Enable incremental searching
 set incsearch
@@ -259,8 +276,8 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Auto-detect format based on EOL, but choose unix by default
-set fileformats=unix,mac,dos
+" Only redraw screen when macros have finished
+set lazyredraw
 
 " Stop certain movements from going to the start of the line
 set nostartofline
@@ -268,25 +285,17 @@ set nostartofline
 " Use F11 to toggle between paste and nopaste
 set pastetoggle=<F11>
 
-" Share windows clipboard
-set clipboard+=unnamed 
-
 " Set spelling language
 set spelllang=en_au
 
 " How long to wait for multi-char mappings, in ms
 set timeoutlen=300
 
-" Directory to save .swp files in
-set directory=~/.vim-tmp//,~/tmp//,/var/tmp//,/tmp//,.
-
 " ===========================
 " GVim
 " ===========================
 
 if has("gui_running")
-    colorscheme sunburst
-
     " No menu or toolbar
     "set guioptions-=m
     "set guioptions-=T
@@ -363,8 +372,8 @@ com! -nargs=* Phpunit make -c app <q-args> | cw
 nmap <leader>et :EasyTree<CR>
 let g:easytree_ignore_files=['*.swp','*.py[dcob]','*.rpyc']
 
-" Set the code explorer to <leader>tb
-nmap <leader>tb :TagbarToggle<CR>
+" Set the code explorer to <F8>
+nmap <F8> :TagbarToggle<CR>
 
 "autocmd VimEnter * TagbarOpen
 
