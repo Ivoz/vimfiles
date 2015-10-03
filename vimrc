@@ -50,8 +50,6 @@ Plugin 'ap/vim-css-color'
 
 "" Functionality
 "
-" Requies PHPUnit on path
-Plugin 'docteurklein/vim-phpunit'
 " Help navigation - use <CR> and <BS>
 Plugin 'juanpabloaj/help.vim'
 " Fuzzy File/Buffer/MRU finding - <C-P>
@@ -80,6 +78,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
 " Snippets
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " Commenting - gc{motion} or gcc (line)
 Plugin 'tomtom/tcomment_vim'
 " Fugitive - git shortcuts for vim
@@ -389,24 +388,26 @@ let g:syntastic_python_checkers=['flake8']
 " Vimroom
 let g:vimroom_sidebar_height=1
 
-" Ultisnip + YCM 'integration'
-function! g:UltiSnips_Complete()
-    call UltiSnips_ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips_JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
-
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+" Close ycm's autocomplete window after it's helped
+let g:ycm_autoclose_preview_window_after_completion = 1
+" " Ultisnip + YCM 'integration'
+" function! g:UltiSnips_Complete()
+"     call UltiSnips_ExpandSnippet()
+"     if g:ulti_expand_res == 0
+"         if pumvisible()
+"             return "\<C-n>"
+"         else
+"             call UltiSnips_JumpForwards()
+"             if g:ulti_jump_forwards_res == 0
+"                return "\<TAB>"
+"             endif
+"         endif
+"     endif
+"     return ""
+" endfunction
+"
+" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
 
 " Stop completion with enter, in addition to default ctrl+y
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
