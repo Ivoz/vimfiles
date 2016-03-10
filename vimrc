@@ -12,7 +12,7 @@ endif
 set rtp+=$VIMHOME/bundle/Vundle.vim
 call vundle#begin()
 " Requires Git - Makes sense of all these Plugin commands
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 
 "" Highlighting / Language support
@@ -20,7 +20,7 @@ Plugin 'gmarik/Vundle.vim'
 " Jade
 Plugin 'digitaltoad/vim-jade'
 " Go
-Plugin 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
 " Actionscript
 Plugin 'jeroenbourgois/vim-actionscript'
 " ReStructedText support
@@ -60,7 +60,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
 " Powered up status line
 Plugin 'bling/vim-airline'
-" TagBar for source code browsing - \tb
+" TagBar for source code browsing - <F8>
 " Requires exuberant ctags
 Plugin 'majutsushi/tagbar'
 " :Gist to paste into Gist and copy url, -p for private
@@ -76,7 +76,7 @@ Plugin 'mikewest/vimroom'
 Plugin 'Raimondi/delimitMate'
 " Check for syntactic correctness!
 Plugin 'scrooloose/syntastic'
-" Snippets
+" Snippets - <C-j>
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Commenting - gc{motion} or gcc (line)
@@ -88,10 +88,12 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 " Easily surround text with other text
 Plugin 'tpope/vim-surround'
-" EasyTree for FS browsing - \et
+" EasyTree for FS browsing - <F7>
 Plugin 'troydm/easytree.vim'
 " Code Completion, C++ requires Clang >= 3.2
 Plugin 'Valloric/YouCompleteMe'
+" .ycm_extra_conf.py generator - :YcmGenerateConfig
+Plugin 'rdnetto/YCM-Generator'
 
 "" Vim-scripts bundles
 "
@@ -357,6 +359,8 @@ let g:airline_right_sep = '«'
 
 " Fix expansion of brackets with delimitMate
 let g:delimitMate_expand_cr = 1
+" Stop completion with enter, in addition to default ctrl+y
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
 " Gist-Vim
 let g:gist_clip_command = 'xclip -selection clipboard'
@@ -364,11 +368,17 @@ let g:gist_detect_filetype = 1
 let g:gist_post_private = 1
 let g:gist_open_browser_after_post = 1
 
+" Vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+
 " phpunit compilation
 com! -nargs=* Phpunit make -c app <q-args> | cw
 
-" Easy tree is set to <leader>et
-nmap <leader>et :EasyTree<CR>
+" Easy tree is set to <F7>
+nmap <F7> :EasyTreeToggle<CR>
 let g:easytree_ignore_files=['*.swp','*.py[dcob]','*.rpyc']
 
 " Set the code explorer to <F8>
@@ -384,30 +394,23 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=0
 let g:syntastic_loc_list_height=4
 let g:syntastic_python_checkers=['flake8']
+" vim-go compatibility
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger='<c-j>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+let g:UltiSnipsSnippetDirectories=[$VIMHOME.'/bundle/vim-snippets/UltiSnips']
 
 " Vimroom
 let g:vimroom_sidebar_height=1
 
 " Close ycm's autocomplete window after it's helped
 let g:ycm_autoclose_preview_window_after_completion = 1
-" " Ultisnip + YCM 'integration'
-" function! g:UltiSnips_Complete()
-"     call UltiSnips_ExpandSnippet()
-"     if g:ulti_expand_res == 0
-"         if pumvisible()
-"             return "\<C-n>"
-"         else
-"             call UltiSnips_JumpForwards()
-"             if g:ulti_jump_forwards_res == 0
-"                return "\<TAB>"
-"             endif
-"         endif
-"     endif
-"     return ""
-" endfunction
-"
-" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:ycm_confirm_extra_conf    = 0
+let g:ycm_global_ycm_extra_conf = $VIMHOME.'/ycm_extra_conf.py'
+let g:ycm_extra_conf_vim_data   = ['&filetype']
+let g:ycm_seed_identifiers_with_syntax = 1
 
-" Stop completion with enter, in addition to default ctrl+y
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
