@@ -28,3 +28,27 @@ it changes frequently!
 
 Hottest bundle: [vim-css-color](https://github.com/ap/vim-css-color) - see the
 colors of CSS codes you type in!
+
+Build YCM with semantic C completion
+------------------------------------
+
+Works on Arch Linux.
+
+Needs: Boost, Clang, Go, Node.js & npm, TypeScript
+
+If your OS doesn't have up-to-date versions of Boost & Clang, you likely
+don't want the system version of those. See [YCM Installation Guide](https://github.com/Valloric/YouCompleteMe#installation)
+
+Run in an empty directory
+
+    #!/usr/bin/bash
+    here=$(pwd)
+    cmake -G "Unix Makefiles" -DUSE_SYSTEM_BOOST=ON -DUSE_SYSTEM_LIBCLANG=ON . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
+    # Go support
+    cd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/gocode
+    go build
+    # Tern/JS support
+    cd ~/.vim/bundle/YouCompleteMe/third_party/ycmd/third_party/tern_runtime
+    npm install --production
+    cd $here
+    cmake --build . --target ycm_core --config Release
