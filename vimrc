@@ -1,110 +1,100 @@
-"$ Vim 7.3
 " don't try to emulate vi's (unfriendly) behaviour
 set nocompatible
 
-"" Vundle
-filetype off
+
+"" Vim-plug
 if has('win32') || has('win64')
     let $VIMHOME=expand('~/vimfiles')
 else
     let $VIMHOME=expand('~/.vim')
 endif
-set rtp+=$VIMHOME/bundle/Vundle.vim
-call vundle#begin()
-" Requires Git - Makes sense of all these Plugin commands
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin($VIMHOME.'/bundle')
 
 
 "" Highlighting / Language support
 "
 " Jade
-Plugin 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 " Go
-Plugin 'fatih/vim-go'
-" Actionscript
-Plugin 'jeroenbourgois/vim-actionscript'
+Plug 'fatih/vim-go', { 'for': 'go' }
 " ReStructedText support
-Plugin 'mitsuhiko/vim-rst'
+Plug 'mitsuhiko/vim-rst', { 'for': 'rst' }
 " Html5
-Plugin 'othree/html5.vim'
+Plug 'othree/html5.vim', { 'for': 'html' }
 " Javascript
-Plugin 'othree/vim-javascript-syntax'
+Plug 'othree/yajs.vim', { 'for': ['javascript', 'html'] }
 " Git higlighting and tidbits
-Plugin 'tpope/vim-git'
+Plug 'tpope/vim-git'
 " Haml, Sass, Scss support
-Plugin 'tpope/vim-haml'
+Plug 'tpope/vim-haml', { 'for': ['haml', 'sass', 'scss'] }
 " Markdown
-Plugin 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 " Updated ruby support
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 " Nginx config
-Plugin 'xhr/vim-nginx'
+Plug 'xhr/vim-nginx'
 " Everything Python!
-"Plugin 'klen/python-mode'
+"Plug 'klen/python-mode'
 
 "" Colors
 " Jellehbeanz
-Plugin 'nanotech/jellybeans.vim'
+Plug 'nanotech/jellybeans.vim'
 " CSS Colours
-Plugin 'ap/vim-css-color'
+Plug 'ap/vim-css-color'
 
 "" Functionality
 "
 " Help navigation - use <CR> and <BS>
-Plugin 'juanpabloaj/help.vim'
+Plug 'juanpabloaj/help.vim'
 " Fuzzy File/Buffer/MRU finding - <C-P>
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " NYAN CAT
-"Plugin 'koron/nyancat-vim'
+"Plug 'koron/nyancat-vim'
 " EasyMotion, to fast-find - \{f,F,t,T,w,W,etc...} 
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 " Powered up status line
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " TagBar for source code browsing - <F8>
 " Requires exuberant ctags
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " :Gist to paste into Gist and copy url, -p for private
 " Requires Curl
-Plugin 'mattn/gist-vim'
-" Required for gist-vim and ideone-vim
-Plugin 'mattn/webapi-vim'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 " To expand html - <c-y>
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
 " Give vim a clean room to edit in with \V
-Plugin 'mikewest/vimroom'
+Plug 'mikewest/vimroom'
 " Delimiter autocompletion
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 " Check for syntactic correctness!
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Snippets - <C-j>
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Commenting - gc{motion} or gcc (line)
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 " Fugitive - git shortcuts for vim
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Easily repeat the below surroundings
 
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 " Easily surround text with other text
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " EasyTree for FS browsing - <F7>
-Plugin 'troydm/easytree.vim'
+Plug 'troydm/easytree.vim'
 " Code Completion, C++ requires Clang >= 3.2
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 " .ycm_extra_conf.py generator - :YcmGenerateConfig
-Plugin 'rdnetto/YCM-Generator'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable', 'on': 'YcmGenerateConfig' }
 
 "" Vim-scripts bundles
 "
 " Better % matching
-Plugin 'matchit.zip'
+Plug 'matchit.zip'
 " <c-w>o to toggle current window full-screen
-Plugin 'ZoomWin'
+Plug 'ZoomWin'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-
+call plug#end()
 " ===========================
 " Appearance
 " ===========================
@@ -197,7 +187,7 @@ set expandtab
 " Set automatic indentation depending upon the detected file type
 filetype plugin indent on
 
-" Make sure that TABs work exactly as TABs in Makefiles 
+" Make sure that TABs work exactly as TABs in Makefiles
 autocmd FileType make setlocal noexpandtab
 autocmd FileType make setlocal softtabstop=0
 

@@ -1,9 +1,9 @@
 My vim/gvim configuration
 =========================
 
-i've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
+I've setup vim with my own .vimrc, hopefully nicely commented and well laid out.
 
-i use [vundle](https://github.com/gmarik/Vundle.vim) to organise plugins.
+I use [vim-plug](https://github.com/junegunn/vim-plug) to organise plugins.
 It's awesome; you should try it.
 Hopefully something like it will become default in vim 8.
 
@@ -13,7 +13,7 @@ Installation
 1. `git clone --recursive https://github.com/Ivoz/vimfiles.git ~/.vim`
 2. If vim < 7.3, `ln -s ~/.vim/vimrc ~/.vimrc`
 3. `vim`
-4. `:PluginInstall`
+4. `:PlugInstall`
 5. done!
 
 My bundles:
