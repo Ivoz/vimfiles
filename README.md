@@ -10,7 +10,7 @@ Hopefully something like it will become default in vim 8.
 Installation
 ------------
 
-1. `git clone --recursive https://github.com/Ivoz/vimfiles.git ~/.vim`
+1. `git clone ~/.vim`
 2. If vim < 7.3, `ln -s ~/.vim/vimrc ~/.vimrc`
 3. `vim`
 4. `:PlugInstall`
